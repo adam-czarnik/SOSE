@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DomParser {
-  public static List<Employee> getParserResult() {
+  public static List<Paper> getParserResult() {
 
     try {
       // Get the DOM Builder Factory
@@ -22,13 +22,13 @@ public class DomParser {
       Document document = builder.parse(ClassLoader.getSystemResourceAsStream("Employee.xml"));
       // Iterating through the nodes and extracting the data
       NodeList nodeList = document.getDocumentElement().getChildNodes();
-      List<Employee> empList = new ArrayList<Employee>();
+      List<Paper> paperList = new ArrayList<Paper>();
       for (int i = 0; i < nodeList.getLength(); i++) {
         Node node = nodeList.item(i);
         if (node instanceof Element) {
           // We have encountered an <employee> tag
-          Employee emp = new Employee();
-          emp.id = node.getAttributes().getNamedItem("id").getNodeValue();
+          Paper doc = new Paper();
+          doc.id = node.getAttributes().getNamedItem("id").getNodeValue();
           NodeList childNodes = node.getChildNodes();
           for (int j = 0; j < childNodes.getLength(); j++) {
             Node cNode = childNodes.item(j);
@@ -36,26 +36,83 @@ public class DomParser {
             if (cNode instanceof Element) {
               String content = cNode.getLastChild().getTextContent().trim();
               switch (cNode.getNodeName()) {
-                case "firstName":
-                  emp.firstName = content;
+                case "author":
+                  doc.author = content;
                   break;
-                case "lastName":
-                  emp.lastName = content;
+                case "editor":
+                  doc.editor = content;
                   break;
-                case "location":
-                  emp.location = content;
+                case "title":
+                  doc.title = content;
+                  break;
+                case "booktitle":
+                  doc.booktitle = content;
+                  break;
+                case "pages":
+                  doc.pages = content;
+                  break;
+                case "year":
+                  doc.year = content;
+                  break;
+                case "address":
+                  doc.address = content;
+                  break;
+                case "journal":
+                  doc.journal = content;
+                  break;
+                case "volume":
+                  doc.volume = content;
+                  break;
+                case "number":
+                  doc.number = content;
+                  break;
+                case "month":
+                  doc.month = content;
+                  break;
+                case "url":
+                  doc.url = content;
+                  break;
+                case "ee":
+                  doc.ee = content;
+                  break;
+                case "cdrom":
+                  doc.cdrom = content;
+                  break;
+                case "cite":
+                  doc.cite = content;
+                  break;
+                case "publisher":
+                  doc.publisher = content;
+                  break;
+                case"note":
+                  doc.note = content;
+                  break;
+                case "crossref" :
+                  doc.crossref = content;
+                  break;
+                case "isbn":
+                  doc.isbn = content;
+                  break;
+                case "series":
+                  doc.series = content;
+                  break;
+                case "school":
+                  doc.school = content;
+                  break;
+                case "chapter":
+                  doc.chapter = content;
                   break;
               }
             }
           }
-          empList.add(emp);
+          paperList.add(doc);
         }
       }
       // Print the Employee list
-      for (Employee e : empList) {
+      for (Paper e : paperList) {
         System.out.println(e);
       }
-      return empList;
+      return paperList;
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -65,3 +122,4 @@ public class DomParser {
   }
 
 }
+
