@@ -6,6 +6,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class DomParser {
       DocumentBuilder builder = factory.newDocumentBuilder();
       // Load and Parse the XML document
       // document contains the complete XML as a Tree
-      Document document = builder.parse(ClassLoader.getSystemResourceAsStream("Employee.xml"));
+      Document document = builder.parse(ClassLoader.getSystemResourceAsStream("dblp-soc-papers.xml"));//change made to getsystemresourceasstream
       // Iterating through the nodes and extracting the data
       NodeList nodeList = document.getDocumentElement().getChildNodes();
       List<Paper> paperList = new ArrayList<Paper>();
@@ -28,7 +29,9 @@ public class DomParser {
         if (node instanceof Element) {
           // We have encountered an <employee> tag
           Paper doc = new Paper();
-          doc.id = node.getAttributes().getNamedItem("id").getNodeValue();
+          doc.authors = new ArrayList<>();
+          doc.mdate = node.getAttributes().getNamedItem("mdate").getNodeValue();
+          doc.key = node.getAttributes().getNamedItem("key").getNodeValue();
           NodeList childNodes = node.getChildNodes();
           for (int j = 0; j < childNodes.getLength(); j++) {
             Node cNode = childNodes.item(j);
@@ -37,7 +40,8 @@ public class DomParser {
               String content = cNode.getLastChild().getTextContent().trim();
               switch (cNode.getNodeName()) {
                 case "author":
-                  doc.author = content;
+                  System.out.println(content);
+                  doc.authors.add(content) ;
                   break;
                 case "editor":
                   doc.editor = content;
@@ -84,10 +88,10 @@ public class DomParser {
                 case "publisher":
                   doc.publisher = content;
                   break;
-                case"note":
+                case "note":
                   doc.note = content;
                   break;
-                case "crossref" :
+                case "crossref":
                   doc.crossref = content;
                   break;
                 case "isbn":
@@ -102,6 +106,9 @@ public class DomParser {
                 case "chapter":
                   doc.chapter = content;
                   break;
+                case "publnr":
+                  doc.publnr = content;
+                  break;
               }
             }
           }
@@ -109,17 +116,32 @@ public class DomParser {
         }
       }
       // Print the Employee list
-      for (Paper e : paperList) {
+      /*for (Paper e : paperList) {
         System.out.println(e);
-      }
+      }*/
       return paperList;
     } catch (Exception e) {
       e.printStackTrace();
     }
     return null;
   }
-  public static void main(String[] args) {
-  }
+  /*public static void main(String[] args) {
+    getParserResult();
+  }*/
 
 }
+
+
+/*
+SQL QUERIES
+
+1. SELECT * FROM authors WHERE author0 == "name" OR author1 == "name" OR author2 == "name" OR author3 == "name" OR author4 == "name" OR author5 == "name" OR author6 == "name" OR author7 == "name" OR author8 == "name" OR author9 == "name";
+2. SELECT * FROM papers WHERE title == "title"
+3. SELECT * FROM papers WHERE title == "title" AND year == "year" AND issue == "issue"
+4. SELECT * FROM papers WHERE conference == "conference" AND year == "year"
+
+2. SELECT * FROM papers WHERE author == "author" AND year == "year"
+3. SELECT * FROM papers WHERE COUNT(author == "author") > 10
+
+ */
 

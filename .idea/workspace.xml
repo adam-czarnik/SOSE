@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fe027116-6d21-4ac0-b64b-01d4028d717b" name="Changes" comment="" />
+    <list default="true" id="fe027116-6d21-4ac0-b64b-01d4028d717b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XMLParse/src/DomParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/XMLParse/src/DomParser.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -16,6 +22,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="1yEu6voNhMLMQkxT2LCw4PrMJqc" />
   <component name="ProjectViewState">
@@ -36,7 +45,10 @@
       <option name="presentableId" value="Default" />
       <updated>1631828899538</updated>
       <workItem from="1631828902211" duration="66000" />
-      <workItem from="1631828984892" duration="67000" />
+      <workItem from="1631828984892" duration="264000" />
+      <workItem from="1631895214115" duration="316000" />
+      <workItem from="1631895597519" duration="1967000" />
+      <workItem from="1631899624648" duration="69000" />
     </task>
     <servers />
   </component>

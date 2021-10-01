@@ -18,7 +18,7 @@ public class JDBCExample {
         // auto close connection
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:mysql://127.0.0.1:3306/CS7340_Lab1?useOldAliasMetadataBehavior=true&&serverTimezone=UTC", "root", "Barn5.snowed")) {
-            List<Employee> employees = DomParser.getParserResult();
+            List<Paper> papers = DomParser.getParserResult();
 
             if (conn != null) {
                 System.out.println("Connected to the database!");
@@ -27,22 +27,44 @@ public class JDBCExample {
             }
 
             Statement stmt = conn.createStatement();
-            List<Employee> temp = DomParser.getParserResult();
-            for(Employee e : temp){
-                String sql = "insert into CS7340_Lab1.employees values ('"+e.id+"', '"+e.firstName+"', '"+e.lastName+"', '"+e.location+"')";
+            List<Paper> temp = DomParser.getParserResult();
+            for(Paper e : temp){
+                String sql = "insert into CS7340_Lab1.papers values ('"+e.key+"', '"+e.pubType+"', '"+e.editor+"', '"+e.title+"', '"+e.booktitle+"', '"+e.pages+"', '"+e.year+"', '"+e.address+"', " +
+                        "'"+e.journal+"', '"+e.volume+"','"+e.number+"', '"+e.month+"', '"+e.url+"', '"+e.ee+"', '"+e.cdrom+"', '"+e.cite+"', '"+e.publisher+"', '"+e.note+"', " +
+                        "'"+e.crossref+"', '"+e.isbn+"', '"+e.series+"', '"+e.school+"', '"+e.chapter+"'  )";
+
                 stmt.execute(sql);
                 System.out.println(sql);
             }
 
-            String select_sql = "select * from CS7340_Lab1.employees";
+            String select_sql = "select * from CS7340_Lab1.papers";
             ResultSet rs = stmt.executeQuery(select_sql);
             while(rs.next())
             {
-                String em_id = rs.getString("employee_id");
-                String em_lastname = rs.getString("employee_lname");
-                String em_firstname = rs.getString("employee_fname");
-                String em_location = rs.getString("employee_location");
-                System.out.println("id: " +em_id+ " last name: " +em_lastname+ " first name:" +em_firstname+ " location: " +em_location);
+                String doc_id = rs.getString("key");
+                String doc_pubType = rs.getString("pubType");
+                String doc_editor = rs.getString("editor");
+                String doc_title = rs.getString("title");
+                String doc_booktitle = rs.getString("booktitle");
+                String doc_pages = rs.getString("pages");
+                String doc_publish_year = rs.getString("publish_year");
+                String doc_address = rs.getString("address");
+                String doc_journal = rs.getString("journal");
+                String doc_volume = rs.getString("volume");
+                String doc_num = rs.getString("num");
+                String doc_mon = rs.getString("mon");
+                String doc_url = rs.getString("url");
+                String doc_ee = rs.getString("ee");
+                String doc_cdrom = rs.getString("cdrom");
+                String doc_cite = rs.getString("cite");
+                String doc_publisher = rs.getString("publisher");
+                String doc_note = rs.getString("note");
+                String doc_crossref = rs.getString("crossref");
+                String doc_isbn = rs.getString("isbn");
+                String doc_series = rs.getString("series");
+                String doc_school = rs.getString("school");
+                String doc_chapter = rs.getString("chapter");
+                System.out.println("id: " +doc_id+ " pubType: " +doc_pubType+ " title:" +doc_title+ " journal: " +doc_journal);
             }
 
 

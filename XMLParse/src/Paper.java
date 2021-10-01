@@ -1,6 +1,11 @@
+import java.util.*;
+
 public class Paper {
-    String id;
-    String author;
+    //int id;
+    String key;
+    String mdate;
+    List<String> authors;
+    String pubType;
     String editor;
     String title;
     String booktitle;
@@ -22,6 +27,7 @@ public class Paper {
     String series;
     String school;
     String chapter;
+    String publnr;
 
 
 
